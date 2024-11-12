@@ -36,7 +36,8 @@ func main() {
 func routesSetup(app *fiber.App) {
 	api := app.Group("/api")
 
-	api.Get("/", func(ctx *fiber.Ctx) error {
+	users := api.Group("/users")
+	users.Get("/", func(ctx *fiber.Ctx) error {
 		return ctx.JSON("hello word")
 	})
 
