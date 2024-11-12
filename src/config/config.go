@@ -8,6 +8,11 @@ import (
 
 type Config struct {
 	AppPort string
+	DBHost  string
+	DBPort  string
+	DBUser  string
+	DBPass  string
+	DBName  string
 }
 
 func NewConfig() *Config {
@@ -15,6 +20,11 @@ func NewConfig() *Config {
 
 	return &Config{
 		AppPort: getterEnv("APP_PORT", "3000"),
+		DBHost:  getterEnv("DB_HOST", "3000"),
+		DBPort:  getterEnv("DB_PORT", "3000"),
+		DBUser:  getterEnv("DB_USER", "3000"),
+		DBPass:  getterEnv("DB_PASS", "3000"),
+		DBName:  getterEnv("DB_NAME", "3000"),
 	}
 }
 

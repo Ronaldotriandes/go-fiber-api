@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/Ronaldotriandes/go-fiber-api/src/config"
+	"github.com/Ronaldotriandes/go-fiber-api/src/database"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
@@ -16,6 +17,8 @@ type SomeStruct struct {
 
 func main() {
 	cfg := config.NewConfig()
+
+	database.DBConnect(cfg)
 	app := fiber.New(fiber.Config{
 		IdleTimeout:  time.Second * 5,
 		WriteTimeout: time.Second * 5,
