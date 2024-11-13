@@ -9,6 +9,7 @@ import (
 	"github.com/Ronaldotriandes/go-fiber-api/handler"
 	"github.com/Ronaldotriandes/go-fiber-api/middleware"
 	"github.com/Ronaldotriandes/go-fiber-api/repository"
+	"github.com/Ronaldotriandes/go-fiber-api/setup/routes"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
@@ -24,7 +25,11 @@ func main() {
 	database.DBConnect(cfg)
 	db := database.GetDB()
 	userRepo := repository.NewUserRepository(db)
+	productRepo := repository.NewProductRepository(db)
+
 	userHandle := handler.NewUserHandler(userRepo)
+	productHandle := handler.NewProductHandler(productRepo)
+
 	app := fiber.New(fiber.Config{
 		ErrorHandler: middleware.ErrorHandler,
 		IdleTimeout:  time.Second * 5,
@@ -33,20 +38,8 @@ func main() {
 	})
 
 	app.Use(logger.New())
-
-	routesSetup(app, userHandle)
+	routes.SetupRoutes(app, userHandle, productHandle)
 
 	log.Fatal(app.Listen(":" + cfg.AppPort))
-
-}
-
-func routesSetup(app *fiber.App, userHandle *handler.UserHandler) {
-	api := app.Group("/api")
-	api.Get("/", func(ctx *fiber.Ctx) error {
-		return ctx.JSON("hello word")
-	})
-	users := api.Group("/users")
-	users.Get("/", userHandle.GetAll)
-	users.Post("/", userHandle.CreateUser)
 
 }
