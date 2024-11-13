@@ -15,7 +15,6 @@ func NewUserHandler(userRepository repository.UserRepository) *UserHandler {
 }
 
 func (h *UserHandler) CreateUser(ctx *fiber.Ctx) error {
-	// Implementasi logika untuk membuat pengguna
 	user := new(models.User)
 	if err := ctx.BodyParser(user); err != nil {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
@@ -33,7 +32,6 @@ func (h *UserHandler) CreateUser(ctx *fiber.Ctx) error {
 }
 
 func (h *UserHandler) GetAll(ctx *fiber.Ctx) error {
-	// Implementasi logika untuk mendapatkan semua pengguna
 	users, err := h.userRepository.GetAll()
 	if err != nil {
 		return ctx.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
