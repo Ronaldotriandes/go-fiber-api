@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/Ronaldotriandes/go-fiber-api/src/config"
-	"github.com/Ronaldotriandes/go-fiber-api/src/models"
+	"github.com/Ronaldotriandes/go-fiber-api/config"
+	"github.com/Ronaldotriandes/go-fiber-api/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
