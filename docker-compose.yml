@@ -10,7 +10,7 @@ services:
       - DB_HOST=postgres
       - DB_USER=postgres
       - DB_PASS=password
-      - DB_NAME=fiber_db
+      - DB_NAME=go-fiber-db
       - DB_PORT=5432
     volumes:
       - .:/app
@@ -23,7 +23,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=fiber_db
+      - POSTGRES_DB=go-fiber-db
     ports:
       - "5432:5432"
     volumes:
