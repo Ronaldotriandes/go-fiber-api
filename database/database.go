@@ -21,7 +21,7 @@ func DBConnect(cfg *config.Config) {
 	log.Println("Successfully connected to database")
 	DB = db
 
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.User{}, &models.Product{})
 }
 
 func GetDB() *gorm.DB {
